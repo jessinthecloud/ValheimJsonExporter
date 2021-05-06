@@ -14,6 +14,7 @@ using Jotunn;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using ValheimJsonExporter.Docs;
+using System.Web;
 
 namespace ValheimJsonExporter
 {
@@ -54,7 +55,10 @@ namespace ValheimJsonExporter
             }
 
             string text = Localization.instance.Localize(key).Replace("\n", "<br/>");
+            // strip non-ascii
             text = Regex.Replace(text, @"[^\u0000-\u007F]+", string.Empty);
+            // escape for JS
+            // text = HttpUtility.JavaScriptStringEncode(text); // is just blank, BepinEx needs System.Web.dll
 
             return text;
         }
