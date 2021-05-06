@@ -38,7 +38,7 @@ namespace ValheimJsonExporter.Docs
                     SimpleJson.JsonObject jsonResource = new SimpleJson.JsonObject();
 
                     jsonResource.Add("amount", req.m_amount);
-                    jsonResource.Add("amountPerLevel", req.m_amountPerLevel);
+                    jsonResource.Add("amount_per_level", req.m_amountPerLevel);
                     jsonResource.Add("recover", req.m_recover);
                     // recipe?.m_item?.m_itemData?.m_dropPrefab?.name is unique item name?
                     jsonResource.Add("name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
@@ -52,11 +52,11 @@ namespace ValheimJsonExporter.Docs
                 SimpleJson.JsonObject jsonRecipe = new SimpleJson.JsonObject();
 
                 jsonRecipe.Add("name", recipe.name);
-                jsonRecipe.Add("itemName", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
+                jsonRecipe.Add("item_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
                 jsonRecipe.Add("enabled", recipe.m_enabled);
-                jsonRecipe.Add("minStationLevel", recipe.m_minStationLevel);
-                // jsonRecipe.Add("craftingStation", recipe.m_craftingStation.m_name); // CraftingStation
-                // jsonRecipe.Add("repairStation", recipe.m_repairStation.m_name); // CraftingStation
+                jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
+                // jsonRecipe.Add("crafting_station", recipe.m_craftingStation.m_name); // CraftingStation
+                // jsonRecipe.Add("repair_station", recipe.m_repairStation.m_name); // CraftingStation
                 jsonRecipe.Add("resources", jsonResources);
 
                 // add recipe to recipes array
