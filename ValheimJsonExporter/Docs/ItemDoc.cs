@@ -23,7 +23,7 @@ namespace ValheimJsonExporter.Docs
                 return;
             }
 
-            Jotunn.Logger.LogInfo("VALHEIM JSON EXPORTER Documenting items");
+            Jotunn.Logger.LogInfo("-------VALHEIM JSON EXPORTER Documenting items----");
 
             // create array to hold all of the item objects
             SimpleJson.JsonArray jsonInfo = new SimpleJson.JsonArray();
@@ -44,9 +44,9 @@ namespace ValheimJsonExporter.Docs
                 jsonInfoObj.Add("ai_attack_interval", shared.m_aiAttackInterval);
                 jsonInfoObj.Add("ai_attack_max_angle", shared.m_aiAttackMaxAngle);
                 jsonInfoObj.Add("ai_attack_range", shared.m_aiAttackRange);
-                // jsonInfoObj.Add("ai_attack_range_min", shared.m_aiAttackRangeMin); // null
-                // jsonInfoObj.Add("ai_prioritized", shared.m_aiPrioritized); // null
-                // jsonInfoObj.Add("ai_target_type", shared.m_aiTargetType); // AiTarget
+               jsonInfoObj.Add("ai_attack_range_min", shared.m_aiAttackRangeMin);
+                jsonInfoObj.Add("ai_prioritized", shared.m_aiPrioritized);
+                jsonInfoObj.Add("ai_target_type", shared.m_aiTargetType); // AiTarget
                 jsonInfoObj.Add("ai_when_flying", shared.m_aiWhenFlying);
                 jsonInfoObj.Add("ai_when_swiming", shared.m_aiWhenSwiming);
                 jsonInfoObj.Add("ai_when_walking", shared.m_aiWhenWalking);
@@ -87,14 +87,29 @@ namespace ValheimJsonExporter.Docs
                 jsonInfoObj.Add("variants", shared.m_variants);
                 jsonInfoObj.Add("weight", shared.m_weight);
                 jsonInfoObj.Add("ammo_type", shared.m_ammoType);
-                // jsonInfoObj.Add("damages", shared.m_damages); // HitData.DamageTypes
-                // jsonInfoObj.Add("damages_per_level", shared.m_damagesPerLevel); // HitData.DamageTypes
+                jsonInfoObj.Add("damages", shared.m_damages); // HitData.DamageTypes
+                jsonInfoObj.Add("damages_per_level", shared.m_damagesPerLevel); // HitData.DamageTypes
                 // jsonInfoObj.Add("damage_modifiers", shared.m_damageModifiers); // List<HitData.DamageModPair>
-                // jsonInfoObj.Add("skill_type", shared.m_skillType); // Skills.SkillType
-                // jsonInfoObj.Add("armor_material", shared.m_armorMaterial); // Material
-                // jsonInfoObj.Add("attack", shared.m_attack); // Attack
-                // jsonInfoObj.Add("secondary_attack", shared.m_secondaryAttack); // Attack
+                jsonInfoObj.Add("skill_type", shared.m_skillType); // Skills.SkillType
+                // jsonInfoObj.Add("armor_material", shared.m_armorMaterial.ToString()); // Material
+                if (shared.m_attack.m_attackType != null)
+                {
+                    jsonInfoObj.Add("attack", shared.m_attack.m_attackType); // Attack
+                }
+                else
+                {
+                    jsonInfoObj.Add("attack", null); // Attack
+                }
 
+                if (shared.m_secondaryAttack.m_attackType != null)
+                {
+                    jsonInfoObj.Add("secondary_attack", shared.m_secondaryAttack.m_attackType); // Attack
+                }
+                else
+                {
+                    jsonInfoObj.Add("secondary_attack", null); // Attack
+                }
+                
                 if (shared.m_attackStatusEffect)
                 {
                     jsonInfoObj.Add("attack_status_effect", shared.m_attackStatusEffect.name);
