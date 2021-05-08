@@ -18,7 +18,8 @@ namespace ValheimJsonExporter.Docs
                 return;
             }
 
-            Jotunn.Logger.LogInfo("Documenting status effects");
+            Jotunn.Logger.LogInfo("VALHEIM JSON EXPORTER Documenting status effects");
+
 
             // create array to hold all of the effects
             SimpleJson.JsonArray effects = new SimpleJson.JsonArray();

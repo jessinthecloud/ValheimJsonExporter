@@ -55,8 +55,28 @@ namespace ValheimJsonExporter.Docs
                 jsonRecipe.Add("item_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
                 jsonRecipe.Add("enabled", recipe.m_enabled);
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
-                // jsonRecipe.Add("crafting_station", recipe.m_craftingStation.m_name); // CraftingStation
-                // jsonRecipe.Add("repair_station", recipe.m_repairStation.m_name); // CraftingStation
+                if (recipe.m_craftingStation)
+                {
+                    jsonRecipe.Add("crafting_station", ValheimJsonExporter.Localize(recipe.m_craftingStation.m_name)); // CraftingStation
+                    jsonRecipe.Add("crafting_station_raw", recipe.m_craftingStation.m_name); // CraftingStation
+                }
+                else
+                {
+                    jsonRecipe.Add("crafting_station", null); // CraftingStation
+                }
+                if (recipe.m_repairStation)
+                {
+                    jsonRecipe.Add("repair_station", ValheimJsonExporter.Localize(recipe.m_repairStation.m_name)); // CraftingStation
+                    jsonRecipe.Add("repair_station_raw", recipe.m_repairStation.m_name); // CraftingStation
+                }
+                else
+                {
+                    jsonRecipe.Add("repair_station", null); // CraftingStation
+                }
+
+                //jsonRecipe.Add("crafting_station", recipe.m_craftingStation.ToString()); // CraftingStation
+
+
                 jsonRecipe.Add("resources", jsonResources);
 
                 // add recipe to recipes array
