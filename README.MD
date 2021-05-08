@@ -1,3 +1,5 @@
+I have no idea what I'm doing but it works
+
 # Tools & Thanks
 - [Jotunn Valheim Lib](https://github.com/Valheim-Modding/Jotunn)
 - [JotunnDoc](https://github.com/Valheim-Modding/Jotunn/tree/prod/JotunnDoc)
