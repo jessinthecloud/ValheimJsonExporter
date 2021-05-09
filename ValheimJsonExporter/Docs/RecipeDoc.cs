@@ -55,7 +55,14 @@ namespace ValheimJsonExporter.Docs
                 SimpleJson.JsonObject jsonRecipe = new SimpleJson.JsonObject();
 
                 // names
-                jsonRecipe.Add("raw_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name)); // item name
+                if(recipe?.m_item?.m_itemData?.m_shared?.m_name != null)
+                {
+                    jsonRecipe.Add("raw_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name)); // item name
+                }
+                else
+                {
+                    jsonRecipe.Add("raw_name", null); // item name
+                }
                 jsonRecipe.Add("var_name", recipe?.m_item?.m_itemData?.m_shared?.m_name); // item name
                 jsonRecipe.Add("true_name", recipe.name); // true name of recipe
 
