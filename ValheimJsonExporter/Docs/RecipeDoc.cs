@@ -62,25 +62,24 @@ namespace ValheimJsonExporter.Docs
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
                 if (recipe.m_craftingStation)
                 {
-                    jsonRecipe.Add("crafting_station", ValheimJsonExporter.Localize(recipe.m_craftingStation.m_name)); // CraftingStation
-                    jsonRecipe.Add("raw_crafting_station", recipe.m_craftingStation.m_name); // CraftingStation
+                    jsonRecipe.Add("raw_crafting_station_name", ValheimJsonExporter.Localize(recipe.m_craftingStation.m_name)); // CraftingStation
+                    jsonRecipe.Add("var_crafting_station_name", recipe.m_craftingStation.m_name); // CraftingStation
+                    jsonRecipe.Add("true_crafting_station_name", recipe.m_craftingStation.name); // CraftingStation
                 }
                 else
                 {
-                    jsonRecipe.Add("crafting_station", null); // CraftingStation
+                    jsonRecipe.Add("raw_crafting_station_name", null); // CraftingStation
                 }
                 if (recipe.m_repairStation)
                 {
-                    jsonRecipe.Add("repair_station", ValheimJsonExporter.Localize(recipe.m_repairStation.m_name)); // CraftingStation
-                    jsonRecipe.Add("raw_repair_station", recipe.m_repairStation.m_name); // CraftingStation
+                    jsonRecipe.Add("raw_repair_station_name", ValheimJsonExporter.Localize(recipe.m_repairStation.m_name)); // CraftingStation
+                    jsonRecipe.Add("var_repair_station_name", recipe.m_repairStation.m_name); // CraftingStation
+                    jsonRecipe.Add("true_repair_station_name", recipe.m_repairStation.name); // CraftingStation
                 }
                 else
                 {
-                    jsonRecipe.Add("repair_station", null); // CraftingStation
+                    jsonRecipe.Add("raw_repair_station_name", null); // CraftingStation
                 }
-
-                //jsonRecipe.Add("crafting_station", recipe.m_craftingStation.ToString()); // CraftingStation
-
 
                 jsonRecipe.Add("requirements", jsonRequirements);
 
