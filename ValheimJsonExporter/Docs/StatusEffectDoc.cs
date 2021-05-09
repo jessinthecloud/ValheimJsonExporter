@@ -57,8 +57,9 @@ namespace ValheimJsonExporter.Docs
                 // create object to hold the data
                 SimpleJson.JsonObject jsonEffect = new SimpleJson.JsonObject();
 
-                jsonEffect.Add("name", ValheimJsonExporter.Localize(statusEffect.m_name));
-                jsonEffect.Add("raw_name", statusEffect.m_name);
+                jsonEffect.Add("var_name", statusEffect.m_name);
+                jsonEffect.Add("raw_name", ValheimJsonExporter.Localize(statusEffect.m_name));
+                jsonEffect.Add("true_name", statusEffect.name);
                 jsonEffect.Add("category", ValheimJsonExporter.Localize(statusEffect.m_category));
                 jsonEffect.Add("tooltip", ValheimJsonExporter.Localize(statusEffect.m_tooltip));
                 // StatusAttribute

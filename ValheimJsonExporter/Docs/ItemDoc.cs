@@ -38,8 +38,10 @@ namespace ValheimJsonExporter.Docs
                 SimpleJson.JsonObject jsonInfoObj = new SimpleJson.JsonObject();
 
                 // populate the item data 
-                jsonInfoObj.Add("name", ValheimJsonExporter.Localize(shared.m_name));
-                jsonInfoObj.Add("raw_name", shared.m_name);
+                jsonInfoObj.Add("raw_name", ValheimJsonExporter.Localize(shared.m_name)); 
+                jsonInfoObj.Add("var_name", shared.m_name); 
+                // no true_name for shared data
+
                 jsonInfoObj.Add("item_type", shared.m_itemType.ToString()); // ItemType
                 jsonInfoObj.Add("description", ValheimJsonExporter.Localize(shared.m_description));
                 jsonInfoObj.Add("ai_attack_interval", shared.m_aiAttackInterval);
@@ -96,34 +98,54 @@ namespace ValheimJsonExporter.Docs
                
                   jsonInfoObj.Add("attack", shared.m_attack.m_attackType); // Attack 
                   jsonInfoObj.Add("secondary_attack", shared.m_secondaryAttack.m_attackType); // Attack
-                
+
+                SimpleJson.JsonArray statusEffects = new SimpleJson.JsonArray();
+
                 if (shared.m_attackStatusEffect)
                 {
-                    jsonInfoObj.Add("raw_attack_status_effect", shared.m_attackStatusEffect.name);
-                    jsonInfoObj.Add("attack_status_effect_name", ValheimJsonExporter.Localize(shared.m_attackStatusEffect.name));
+                    SimpleJson.JsonObject jsonStatusEffect = new SimpleJson.JsonObject();
+                    jsonStatusEffect.Add("type", "attack");
+                    jsonStatusEffect.Add("var_name", shared.m_attackStatusEffect.m_name);
+                    jsonStatusEffect.Add("raw_name", ValheimJsonExporter.Localize(shared.m_attackStatusEffect.m_name));
+                    jsonStatusEffect.Add("true_name", shared.m_attackStatusEffect.name);
+                    statusEffects.Add(jsonStatusEffect);
                 }
                 if (shared.m_consumeStatusEffect)
                 {
-                    jsonInfoObj.Add("raw_consume_status_effect", shared.m_consumeStatusEffect.name);
-                    jsonInfoObj.Add("consume_status_effect_name", ValheimJsonExporter.Localize(shared.m_consumeStatusEffect.name));
+                    SimpleJson.JsonObject jsonStatusEffect = new SimpleJson.JsonObject();
+                    jsonStatusEffect.Add("type", "consume");
+                    jsonStatusEffect.Add("var_name", shared.m_consumeStatusEffect.m_name);
+                    jsonStatusEffect.Add("raw_name", ValheimJsonExporter.Localize(shared.m_consumeStatusEffect.m_name));
+                    jsonStatusEffect.Add("true_name", shared.m_consumeStatusEffect.name);
+                    statusEffects.Add(jsonStatusEffect);
                 }
                 if (shared.m_equipStatusEffect)
                 {
-                    jsonInfoObj.Add("raw_equip_status_effect", shared.m_equipStatusEffect.name);
-                    jsonInfoObj.Add("equip_status_effect_name", ValheimJsonExporter.Localize(shared.m_equipStatusEffect.name));
+                    SimpleJson.JsonObject jsonStatusEffect = new SimpleJson.JsonObject();
+                    jsonStatusEffect.Add("type", "equip");
+                    jsonStatusEffect.Add("var_name", shared.m_equipStatusEffect.m_name);
+                    jsonStatusEffect.Add("raw_name", ValheimJsonExporter.Localize(shared.m_equipStatusEffect.m_name));
+                    jsonStatusEffect.Add("true_name", shared.m_equipStatusEffect.name);
+                    statusEffects.Add(jsonStatusEffect);
                 }
                 if (shared.m_setStatusEffect)
                 {
-                    jsonInfoObj.Add("raw_set_status_effect_name", shared.m_setStatusEffect.name);
-                    jsonInfoObj.Add("set_status_effect_name", ValheimJsonExporter.Localize(shared.m_setStatusEffect.name));
-
+                    SimpleJson.JsonObject jsonStatusEffect = new SimpleJson.JsonObject();
+                    jsonStatusEffect.Add("type", "set");
+                    jsonStatusEffect.Add("var_name", shared.m_setStatusEffect.m_name);
+                    jsonStatusEffect.Add("raw_name", ValheimJsonExporter.Localize(shared.m_setStatusEffect.m_name));
+                    jsonStatusEffect.Add("true_name", shared.m_setStatusEffect.name);
+                    statusEffects.Add(jsonStatusEffect);
                 }
+
+                jsonInfoObj.Add("status_effects", statusEffects);
 
                 // Object to hold info about a single item
                 SimpleJson.JsonObject jsonObj = new SimpleJson.JsonObject();
                 // item name
-                jsonObj.Add("raw_name", obj.name);
-                jsonObj.Add("name", ValheimJsonExporter.Localize(shared.m_name));
+                jsonObj.Add("var_name", shared.m_name);
+                jsonObj.Add("raw_name", ValheimJsonExporter.Localize(shared.m_name));
+                jsonObj.Add("true_name", obj.name);
                 // item data
                 jsonObj.Add("shared_data", jsonInfoObj);
                 // add item to the overall array

@@ -40,8 +40,8 @@ namespace ValheimJsonExporter.Docs
                     jsonRequirement.Add("amount", req.m_amount);
                     jsonRequirement.Add("amount_per_level", req.m_amountPerLevel);
                     jsonRequirement.Add("recover", req.m_recover);
-                    // recipe?.m_item?.m_itemData?.m_dropPrefab?.name is unique item name?
-                    jsonRequirement.Add("prefab_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_dropPrefab?.name));
+                    // recipe?.m_item?.m_itemData?.m_dropPrefab?.name is unique item name? -- is always null...
+                    // jsonRequirement.Add("prefab_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_dropPrefab?.name));
                     // item name
                     jsonRequirement.Add("name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
 
@@ -53,8 +53,11 @@ namespace ValheimJsonExporter.Docs
                 // Object to hold info about a single item
                 SimpleJson.JsonObject jsonRecipe = new SimpleJson.JsonObject();
 
-                jsonRecipe.Add("name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
-                jsonRecipe.Add("raw_name", recipe.name);
+                // names
+                jsonRecipe.Add("raw_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name)); // item name
+                jsonRecipe.Add("var_name", recipe?.m_item?.m_itemData?.m_shared?.m_name); // item name
+                jsonRecipe.Add("true_name", recipe.name); // true name of recipe
+
                 jsonRecipe.Add("enabled", recipe.m_enabled);
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
                 if (recipe.m_craftingStation)
