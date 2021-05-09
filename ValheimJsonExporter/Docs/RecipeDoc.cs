@@ -29,36 +29,38 @@ namespace ValheimJsonExporter.Docs
                     continue;
                 }
 
-                // create array to hold resources for this recipe
-                SimpleJson.JsonArray jsonResources = new SimpleJson.JsonArray();
+                // create array to hold requirements for this recipe
+                SimpleJson.JsonArray jsonRequirements = new SimpleJson.JsonArray();
 
                 foreach (Piece.Requirement req in recipe.m_resources)
                 {
-                    // create object to hold the resource data
-                    SimpleJson.JsonObject jsonResource = new SimpleJson.JsonObject();
+                    // create object to hold the requirement data
+                    SimpleJson.JsonObject jsonRequirement = new SimpleJson.JsonObject();
 
-                    jsonResource.Add("amount", req.m_amount);
-                    jsonResource.Add("amount_per_level", req.m_amountPerLevel);
-                    jsonResource.Add("recover", req.m_recover);
+                    jsonRequirement.Add("amount", req.m_amount);
+                    jsonRequirement.Add("amount_per_level", req.m_amountPerLevel);
+                    jsonRequirement.Add("recover", req.m_recover);
                     // recipe?.m_item?.m_itemData?.m_dropPrefab?.name is unique item name?
-                    jsonResource.Add("name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
+                    jsonRequirement.Add("prefab_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_dropPrefab?.name));
+                    // item name
+                    jsonRequirement.Add("name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
 
-                    // add to resources array
-                    jsonResources.Add(jsonResource);
-                    
-                } // end each resource
+                    // add to requirements array
+                    jsonRequirements.Add(jsonRequirement);
+
+                } // end each requirement
 
                 // Object to hold info about a single item
                 SimpleJson.JsonObject jsonRecipe = new SimpleJson.JsonObject();
 
-                jsonRecipe.Add("name", recipe.name);
-                jsonRecipe.Add("item_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
+                jsonRecipe.Add("name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_shared?.m_name));
+                jsonRecipe.Add("raw_name", recipe.name);
                 jsonRecipe.Add("enabled", recipe.m_enabled);
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
                 if (recipe.m_craftingStation)
                 {
                     jsonRecipe.Add("crafting_station", ValheimJsonExporter.Localize(recipe.m_craftingStation.m_name)); // CraftingStation
-                    jsonRecipe.Add("crafting_station_raw", recipe.m_craftingStation.m_name); // CraftingStation
+                    jsonRecipe.Add("raw_crafting_station", recipe.m_craftingStation.m_name); // CraftingStation
                 }
                 else
                 {
@@ -67,7 +69,7 @@ namespace ValheimJsonExporter.Docs
                 if (recipe.m_repairStation)
                 {
                     jsonRecipe.Add("repair_station", ValheimJsonExporter.Localize(recipe.m_repairStation.m_name)); // CraftingStation
-                    jsonRecipe.Add("repair_station_raw", recipe.m_repairStation.m_name); // CraftingStation
+                    jsonRecipe.Add("raw_repair_station", recipe.m_repairStation.m_name); // CraftingStation
                 }
                 else
                 {
@@ -77,7 +79,7 @@ namespace ValheimJsonExporter.Docs
                 //jsonRecipe.Add("crafting_station", recipe.m_craftingStation.ToString()); // CraftingStation
 
 
-                jsonRecipe.Add("resources", jsonResources);
+                jsonRecipe.Add("requirements", jsonRequirements);
 
                 // add recipe to recipes array
                 recipesArr.Add(jsonRecipe);
