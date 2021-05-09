@@ -43,7 +43,8 @@ namespace ValheimJsonExporter.Docs
                     // recipe?.m_item?.m_itemData?.m_dropPrefab?.name is unique item name? -- is always null...
                     // jsonRequirement.Add("prefab_name", ValheimJsonExporter.Localize(recipe?.m_item?.m_itemData?.m_dropPrefab?.name));
                     // item name
-                    jsonRequirement.Add("name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
+                    jsonRequirement.Add("raw_name", ValheimJsonExporter.Localize(req?.m_resItem?.m_itemData?.m_shared?.m_name));
+                    jsonRequirement.Add("var_name", req?.m_resItem?.m_itemData?.m_shared?.m_name);
 
                     // add to requirements array
                     jsonRequirements.Add(jsonRequirement);
@@ -60,6 +61,7 @@ namespace ValheimJsonExporter.Docs
 
                 jsonRecipe.Add("enabled", recipe.m_enabled);
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
+
                 if (recipe.m_craftingStation)
                 {
                     jsonRecipe.Add("raw_crafting_station_name", ValheimJsonExporter.Localize(recipe.m_craftingStation.m_name)); // CraftingStation
