@@ -42,7 +42,8 @@ namespace ValheimJsonExporter.Docs
                 jsonInfoObj.Add("var_name", shared.m_name); 
                 // no true_name for shared data
 
-                jsonInfoObj.Add("item_type", shared.m_itemType.ToString()); // ItemType
+                jsonInfoObj.Add("item_type_name", shared.m_itemType.ToString()); // ItemType
+                jsonInfoObj.Add("item_type", shared.m_itemType); // ItemType
                 jsonInfoObj.Add("description", ValheimJsonExporter.Localize(shared.m_description));
                 jsonInfoObj.Add("ai_attack_interval", shared.m_aiAttackInterval);
                 jsonInfoObj.Add("ai_attack_max_angle", shared.m_aiAttackMaxAngle);
