@@ -33,10 +33,11 @@ namespace ValheimJsonExporter
         {
             docs = new List<Doc>()
             {
-                // new PrefabDoc(),    // crafting stations and such?
+                new CraftingStationDoc(),
                 new StatusEffectDoc(),
                 new ItemDoc(),      // equippable/consumable/craftable items
                 new RecipeDoc(),
+                // new PrefabDoc(),    // crafting stations and such?
                 // new InputDoc(),
                 // new PieceTableDoc(),
                 // new PieceDoc(),                

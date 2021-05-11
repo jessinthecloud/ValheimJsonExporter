@@ -7,7 +7,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class RPCDoc : Doc
     {
-        public RPCDoc() : base("ValheimJsonExporter/Docs/conceptual/rpc/rpc-list.json")
+        public RPCDoc() : base("ValheimJsonExporter/Docs/rpc-list.json")
         {
             Save();
         }

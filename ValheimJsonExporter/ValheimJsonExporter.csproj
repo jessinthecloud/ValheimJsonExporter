@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doc.cs" />
+    <Compile Include="Docs\CraftingStationDoc.cs" />
     <Compile Include="Docs\InputDoc.cs" />
     <Compile Include="Docs\ItemDoc.cs" />
     <Compile Include="Docs\PieceDoc.cs" />

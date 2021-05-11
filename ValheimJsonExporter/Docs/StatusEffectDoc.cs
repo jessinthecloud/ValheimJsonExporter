@@ -6,7 +6,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class StatusEffectDoc : Doc
     {
-        public StatusEffectDoc() : base("ValheimJsonExporter/Docs/conceptual/status-effects/status-effect-list.json")
+        public StatusEffectDoc() : base("ValheimJsonExporter/Docs/status-effect-list.json")
         {
             ItemManager.OnItemsRegistered += DocStatusEffects;
         }

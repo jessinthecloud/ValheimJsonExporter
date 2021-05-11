@@ -5,7 +5,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class PrefabDoc : Doc
     {
-        public PrefabDoc() : base("ValheimJsonExporter/Docs/conceptual/prefabs/prefab-list.json")
+        public PrefabDoc() : base("ValheimJsonExporter/Docs/prefab-list.json")
         {
             PrefabManager.OnPrefabsRegistered += DocPrefabs;
         }

@@ -11,7 +11,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class ItemDoc : Doc
     {
-        public ItemDoc() : base("ValheimJsonExporter/Docs/conceptual/objects/item-list.json")
+        public ItemDoc() : base("ValheimJsonExporter/Docs/item-list.json")
         {
             ItemManager.OnItemsRegistered += DocItems;
         }

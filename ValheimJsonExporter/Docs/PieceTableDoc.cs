@@ -7,7 +7,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class PieceTableDoc : Doc
     {
-        public PieceTableDoc() : base("ValheimJsonExporter/Docs/conceptual/pieces/piece-table-list.json")
+        public PieceTableDoc() : base("ValheimJsonExporter/Docs/piece-table-list.json")
         {
             PieceManager.OnPiecesRegistered += docPieceTables;
         }

@@ -5,7 +5,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class RecipeDoc : Doc
     {
-        public RecipeDoc() : base("ValheimJsonExporter/Docs/conceptual/objects/recipe-list.json")
+        public RecipeDoc() : base("ValheimJsonExporter/Docs/recipe-list.json")
         {
             ItemManager.OnItemsRegistered += DocRecipes;
         }

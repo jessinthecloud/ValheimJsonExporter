@@ -5,7 +5,7 @@ namespace ValheimJsonExporter.Docs
 {
     public class InputDoc : Doc
     {
-        public InputDoc() : base("ValheimJsonExporter/Docs/conceptual/input/input-list.json")
+        public InputDoc() : base("ValheimJsonExporter/Docs/input-list.json")
         {
             SceneManager.sceneLoaded += docInputs;
         }
