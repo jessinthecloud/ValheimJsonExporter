@@ -1,4 +1,4 @@
-I have no idea what I'm doing but it works
+Tbh I have no idea what I'm doing but it works
 
 # Tools & Thanks
 - [Jötunn, the Valheim Library](https://github.com/Valheim-Modding/Jotunn) MIT License
