@@ -1,7 +1,7 @@
 I have no idea what I'm doing but it works
 
 # Tools & Thanks
-- [Jötunn, the Valheim Library](https://github.com/Valheim-Modding/Jotunn)
+- [Jötunn, the Valheim Library](https://github.com/Valheim-Modding/Jotunn) MIT License
     - [JotunnDoc](https://github.com/Valheim-Modding/Jotunn/tree/prod/JotunnDoc)
 - [JVL Discord](https://discord.gg/PZpFBrEQ3Z)
 - [Valheim Modding Discord](https://discord.gg/RBq2mzeu4z)
