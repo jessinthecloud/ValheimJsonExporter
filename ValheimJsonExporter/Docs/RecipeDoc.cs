@@ -68,6 +68,7 @@ namespace ValheimJsonExporter.Docs
 
                 jsonRecipe.Add("enabled", recipe.m_enabled);
                 jsonRecipe.Add("min_station_level", recipe.m_minStationLevel);
+                jsonRecipe.Add("amount", recipe.m_amount);
 
                 if (recipe.m_craftingStation)
                 {
@@ -91,6 +92,7 @@ namespace ValheimJsonExporter.Docs
                 }
 
                 jsonRecipe.Add("requirements", jsonRequirements);
+                
 
                 // add recipe to recipes array
                 recipesArr.Add(jsonRecipe);
