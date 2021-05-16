@@ -1,8 +1,8 @@
-I have no idea what I'm doing but it works
+Tbh I have no idea what I'm doing but it works
 
 # Tools & Thanks
-- [Jotunn Valheim Lib](https://github.com/Valheim-Modding/Jotunn)
-- [JotunnDoc](https://github.com/Valheim-Modding/Jotunn/tree/prod/JotunnDoc)
+- [Jötunn, the Valheim Library](https://github.com/Valheim-Modding/Jotunn) MIT License
+    - [JotunnDoc](https://github.com/Valheim-Modding/Jotunn/tree/prod/JotunnDoc)
 - [JVL Discord](https://discord.gg/PZpFBrEQ3Z)
 - [Valheim Modding Discord](https://discord.gg/RBq2mzeu4z)
 - [Valheim Modding Wiki](https://github.com/Valheim-Modding/Wiki/wiki/ObjectDB-Table)
