@@ -35,14 +35,12 @@ namespace ValheimJsonExporter
             {
                 new CraftingStationDoc(),
                 new StatusEffectDoc(),
-                new ItemDoc(),      // equippable/consumable/craftable items
+                new ItemDoc(),
                 new RecipeDoc(),
                 new PieceTableDoc(),
                 new PieceDoc(),                
-                new SpriteDoc(),                
-                // new PrefabDoc(),   
-                // new InputDoc(),
-                // new RPCDoc()
+                new PrefabDoc(),
+                // new SpriteDoc(),                
             };
 
             Debug.Log("Initialized ValheimJsonExporter");

@@ -78,7 +78,8 @@ namespace ValheimJsonExporter.Docs
             RenderTexture.active = renderTex;
             Texture2D readableTex = new Texture2D(source.width, source.height);
             // sprite.textureRect
-            readableTex.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+            readableTex.ReadPixels(sourceRect, 0, 0);
+            // readableTex.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
             readableTex.Apply();
             RenderTexture.active = previous;
             RenderTexture.ReleaseTemporary(renderTex);
