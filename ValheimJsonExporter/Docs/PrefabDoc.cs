@@ -36,6 +36,7 @@ namespace ValheimJsonExporter.Docs
 
                     component.Add("raw_name", ValheimJsonExporter.Localize(comp.GetType().Name));
                     component.Add("true_name", comp.GetType().Name);
+                    components.Add(component);
                 }
 
                 prefab.Add("var_name", null);
