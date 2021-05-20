@@ -40,7 +40,7 @@ namespace ValheimJsonExporter
                 new PieceTableDoc(),
                 new PieceDoc(),                
                 new PrefabDoc(),
-                // new SpriteDoc(),                
+                new SpriteDoc(),                
             };
 
             Debug.Log("Initialized ValheimJsonExporter");

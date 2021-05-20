@@ -42,30 +42,38 @@ namespace ValheimJsonExporter.Docs
                 jsonSprite.Add("raw_name", ValheimJsonExporter.Localize(sprite.name));
                 jsonSprite.Add("var_name", sprite.name);
                 jsonSprite.Add("texture", sprite.texture.name);
-                jsonSprite.Add("coords", sprite.textureRect.ToString());
-                // jsonSprite.Add("image", ImageConversion.EncodeToJPG(sprite.texture, 100));
-                Texture2D readableTex = duplicateTexture(sprite.texture, sprite.textureRect);
-                byte[] data = ImageConversion.EncodeToJPG(readableTex); // tex.EncodeToJPG();
-                // byte[] data = sprite.texture.EncodeToJPG();
-
-                string file = Paths.PluginPath + "/ValheimJsonExporter/Docs/sprites/" + sprite.name + ".jpg";
-                File.WriteAllBytes(file, data);
-                
-                Jotunn.Logger.LogInfo(" ----===----VALHEIM JSON EXPORTER ---- sprite saved to "+file);
+                jsonSprite.Add("coords", sprite.textureRect.ToString());               
 
                 // add sprite to array
                 spritesArr.Add(jsonSprite);
             }
 
-            // write to the file
+            // write JSON to the file
             AddText(spritesArr.ToString());
-
             Save();
+
+            // create an image from the sprite
+            // do this separate because... crashes
+            foreach (var sprite in sprites)
+            {
+                // textureRect is whole atlas?
+                Texture2D readableTex = duplicateTexture(sprite.texture, sprite.textureRect);
+                byte[] data = ImageConversion.EncodeToJPG(readableTex); 
+
+                string file = Paths.PluginPath + "/ValheimJsonExporter/Docs/sprites/" + sprite.name + ".jpg";
+
+                File.WriteAllBytes(file, data);
+
+                Jotunn.Logger.LogInfo(" ----===----VALHEIM JSON EXPORTER ---- sprite saved to " + file);
+
+            }
+
         } // end docSprites
 
         // https://stackoverflow.com/questions/44733841/how-to-make-texture2d-readable-via-script/44734346#44734346
         Texture2D duplicateTexture(Texture2D source, Rect sourceRect)
         {
+            // Create a temporary RenderTexture of the same size as the texture
             RenderTexture renderTex = RenderTexture.GetTemporary(
                         source.width,
                         source.height,
@@ -73,16 +81,29 @@ namespace ValheimJsonExporter.Docs
                         RenderTextureFormat.Default,
                         RenderTextureReadWrite.Linear);
 
+            // Blit the pixels on texture to the RenderTexture
             Graphics.Blit(source, renderTex);
+
+            // Backup the currently set RenderTexture
             RenderTexture previous = RenderTexture.active;
+
+            // Set the current RenderTexture to the temporary one we created
             RenderTexture.active = renderTex;
+
+            // Create a new readable Texture2D to copy the pixels to it
             Texture2D readableTex = new Texture2D(source.width, source.height);
-            // sprite.textureRect
-            readableTex.ReadPixels(sourceRect, 0, 0);
-            // readableTex.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+
+            // Copy the pixels from the RenderTexture to the new Texture
+            readableTex.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
             readableTex.Apply();
+
+            // Reset the active RenderTexture
             RenderTexture.active = previous;
+
+            // Release the temporary RenderTexture
             RenderTexture.ReleaseTemporary(renderTex);
+
+            // "readableTex" now has the same pixels from "source" and it's readable.
             return readableTex;
         }
     }
