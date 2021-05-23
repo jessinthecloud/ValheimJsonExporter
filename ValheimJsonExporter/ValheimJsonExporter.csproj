@@ -86,7 +86,6 @@
     <Compile Include="Docs\PieceTableDoc.cs" />
     <Compile Include="Docs\PrefabDoc.cs" />
     <Compile Include="Docs\RecipeDoc.cs" />
-    <Compile Include="Docs\RPCDoc.cs" />
     <Compile Include="Docs\SpriteDoc.cs" />
     <Compile Include="Docs\StatusEffectDoc.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />

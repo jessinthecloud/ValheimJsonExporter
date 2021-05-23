@@ -1,5 +1,5 @@
 ﻿// ValheimJsonExporter
-// a Valheim mod skeleton using Jötunn
+// a Valheim mod using Jötunn
 // 
 // File:    ValheimJsonExporter.cs
 // Project: ValheimJsonExporter
@@ -41,6 +41,15 @@ namespace ValheimJsonExporter
                 new PieceDoc(),                
                 new PrefabDoc(),
                 new SpriteDoc(),                
+                // create json docs with no name alterations
+                /*new CraftingStationDoc("CS/objects/crafting-station-list.json"),
+                new StatusEffectDoc("CS/status-effect/status-effect-list.json"),
+                new ItemDoc("CS/objects/item-list.json"),
+                new RecipeDoc("CS/objects/recipe-list.json"),
+                new PieceTableDoc("CS/pieces/piece-table-list.json"),
+                new PieceDoc("CS/pieces/piece-list.json"),
+                new PrefabDoc("CS/prefabs/prefab-list.json"),
+                new SpriteDoc("CS/gui/sprite-list.json"),*/
             };
 
             Debug.Log("Initialized ValheimJsonExporter");
@@ -51,7 +60,7 @@ namespace ValheimJsonExporter
         {
             if (string.IsNullOrEmpty(key))
             {
-                return "NULL";
+                return null;
             }
 
             string text = Localization.instance.Localize(key).Replace("\n", "<br/>");

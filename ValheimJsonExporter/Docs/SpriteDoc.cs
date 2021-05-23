@@ -9,9 +9,14 @@ namespace ValheimJsonExporter.Docs
 {
     public class SpriteDoc : Doc
     {
-        public SpriteDoc() : base("ValheimJsonExporter/Docs/sprite-list.json")
+        public SpriteDoc() : base("sprite-list.json")
         {
             SceneManager.sceneLoaded += docSprites;
+        }
+
+        public SpriteDoc(string file) : base(file)
+        {
+            SceneManager.sceneLoaded += docCSSprites;
         }
 
         public void docSprites(Scene scene, LoadSceneMode mode)
@@ -26,11 +31,10 @@ namespace ValheimJsonExporter.Docs
                 return;
             }
 
-            Jotunn.Logger.LogInfo("VALHEIM JSON EXPORTER Documenting Sprites");
+            Jotunn.Logger.LogInfo("JSON EXPORTER Documenting Sprites");
 
             // create array to hold all of the recipe objects
             SimpleJson.JsonArray spritesArr = new SimpleJson.JsonArray();
-
 
             var sprites = Resources.FindObjectsOfTypeAll<Sprite>().OrderBy(x => x.name);
 
@@ -54,7 +58,7 @@ namespace ValheimJsonExporter.Docs
 
             // create an image from the sprite
             // do this separate because... crashes
-            foreach (var sprite in sprites)
+           /* foreach (var sprite in sprites)
             {
                 // textureRect is whole atlas?
                 Texture2D readableTex = duplicateTexture(sprite.texture, sprite.textureRect);
@@ -66,8 +70,45 @@ namespace ValheimJsonExporter.Docs
 
                 Jotunn.Logger.LogInfo(" ----===----VALHEIM JSON EXPORTER ---- sprite saved to " + file);
 
+            }*/
+
+        } // end docSprites
+
+        public void docCSSprites(Scene scene, LoadSceneMode mode)
+        {
+            if (Generated)
+            {
+                return;
             }
 
+            if (scene.name != "main")
+            {
+                return;
+            }
+
+            Jotunn.Logger.LogInfo("JSON EXPORTER Documenting Sprites");
+
+            // create array to hold all of the recipe objects
+            SimpleJson.JsonArray spritesArr = new SimpleJson.JsonArray();
+
+            var sprites = Resources.FindObjectsOfTypeAll<Sprite>().OrderBy(x => x.name);
+
+            foreach (var sprite in sprites)
+            {
+                // create object to hold the sprite data
+                SimpleJson.JsonObject jsonSprite = new SimpleJson.JsonObject();
+
+                jsonSprite.Add("name", ValheimJsonExporter.Localize(sprite.name));
+                jsonSprite.Add("texture_name", sprite.texture.name);
+                jsonSprite.Add("textureRect", sprite.textureRect.ToString());               
+
+                // add sprite to array
+                spritesArr.Add(jsonSprite);
+            }
+
+            // write JSON to the file
+            AddText(spritesArr.ToString());
+            Save();
         } // end docSprites
 
         // https://stackoverflow.com/questions/44733841/how-to-make-texture2d-readable-via-script/44734346#44734346
