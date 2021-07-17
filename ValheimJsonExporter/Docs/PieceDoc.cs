@@ -27,7 +27,6 @@ namespace ValheimJsonExporter.Docs
             }
 
             Jotunn.Logger.LogInfo("JSON ExPORTER Documenting PIECES");
-
         
             var pieceTables = ReflectionHelper.GetPrivateField<Dictionary<string, PieceTable>>(PieceManager.Instance, "PieceTables");
 
@@ -44,7 +43,6 @@ namespace ValheimJsonExporter.Docs
                     {
                         continue;
                     }
-
                     
                     // create array to hold requirements for this piece
                     SimpleJson.JsonArray jsonRequirements = new SimpleJson.JsonArray();

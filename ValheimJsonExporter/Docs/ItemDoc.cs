@@ -47,7 +47,6 @@ namespace ValheimJsonExporter.Docs
                 jsonInfoObj.Add("raw_name", ValheimJsonExporter.Localize(shared.m_name)); 
                 jsonInfoObj.Add("var_name", shared.m_name); 
                 // no true_name for shared data
-
                 jsonInfoObj.Add("item_type_name", shared.m_itemType.ToString()); // ItemType
                 jsonInfoObj.Add("item_type", shared.m_itemType); // ItemType
                 jsonInfoObj.Add("description", ValheimJsonExporter.Localize(shared.m_description));
@@ -98,10 +97,33 @@ namespace ValheimJsonExporter.Docs
                 jsonInfoObj.Add("variants", shared.m_variants);
                 jsonInfoObj.Add("weight", shared.m_weight);
                 jsonInfoObj.Add("ammo_type", shared.m_ammoType);
-                jsonInfoObj.Add("damages", shared.m_damages); // HitData.DamageTypes
-                jsonInfoObj.Add("damages_per_level", shared.m_damagesPerLevel); // HitData.DamageTypes
+
+                // add damage types
+                // HitData.DamageTypes damage = item.m_itemData.GetDamage();
+                HitData.DamageTypes damage = shared.m_damages;
+                SimpleJson.JsonObject dmgObj = new SimpleJson.JsonObject();
+                dmgObj.Add("damage", damage.m_damage);
+                dmgObj.Add("blunt", damage.m_blunt);
+                dmgObj.Add("slash", damage.m_slash);
+                dmgObj.Add("pierce", damage.m_pierce);
+                dmgObj.Add("chop", damage.m_chop);
+                dmgObj.Add("pickaxe", damage.m_pickaxe);
+                dmgObj.Add("fire", damage.m_fire);
+                dmgObj.Add("frost", damage.m_frost);
+                dmgObj.Add("lightning", damage.m_lightning);
+                dmgObj.Add("poison", damage.m_poison);
+                dmgObj.Add("spirit", damage.m_spirit);
+                jsonInfoObj.Add("damages", dmgObj); // HitData.DamageTypes
+                // jsonInfoObj.Add("damage", damage); // HitData.DamageTypes
+
+                // add damage types per level
+                HitData.DamageTypes damagesPerLevel = item.m_itemData.m_shared.m_damagesPerLevel;
+                jsonInfoObj.Add("damages_per_level", damagesPerLevel); // HitData.DamageTypes
+                
                 // jsonInfoObj.Add("damage_modifiers", shared.m_damageModifiers); // List<HitData.DamageModPair>
+                
                 jsonInfoObj.Add("skill_type", shared.m_skillType); // Skills.SkillType
+                
                 // jsonInfoObj.Add("armor_material", shared.m_armorMaterial.ToString()); // Material
                
                   jsonInfoObj.Add("attack", shared.m_attack.m_attackType); // Attack 
