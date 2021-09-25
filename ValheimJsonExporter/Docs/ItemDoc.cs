@@ -114,7 +114,6 @@ namespace ValheimJsonExporter.Docs
                 dmgObj.Add("poison", damage.m_poison);
                 dmgObj.Add("spirit", damage.m_spirit);
                 jsonInfoObj.Add("damages", dmgObj); // HitData.DamageTypes
-                // jsonInfoObj.Add("damage", damage); // HitData.DamageTypes
 
                 // add damage types per level
                 HitData.DamageTypes damagesPerLevel = item.m_itemData.m_shared.m_damagesPerLevel;

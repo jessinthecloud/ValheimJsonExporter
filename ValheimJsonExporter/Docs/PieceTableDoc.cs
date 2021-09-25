@@ -27,7 +27,7 @@ namespace ValheimJsonExporter.Docs
 
             Jotunn.Logger.LogInfo("JSON EXPORTER Documenting piece tables");
 
-            var pieceTables = ReflectionHelper.GetPrivateField<Dictionary<string, PieceTable>>(PieceManager.Instance, "PieceTables");
+            var pieceTables = ReflectionHelper.GetPrivateField<Dictionary<string, PieceTable>>(PieceManager.Instance, "PieceTableMap");
             var nameMap = ReflectionHelper.GetPrivateField<Dictionary<string, string>>(PieceManager.Instance, "PieceTableNameMap");
 
             

@@ -20,8 +20,8 @@ namespace ValheimJsonExporter
 {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid)]
-    //[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
-    internal class ValheimJsonExporter : BaseUnityPlugin
+    
+    public class ValheimJsonExporter : BaseUnityPlugin
     {
         public const string PluginGUID = "jessinthecloud.ValheimJsonExporter";
         public const string PluginName = "ValheimJsonExporter";
@@ -40,7 +40,8 @@ namespace ValheimJsonExporter
                 new PieceTableDoc(),
                 new PieceDoc(),                
                 new PrefabDoc(),
-                new SpriteDoc(),                
+                // new SpriteDoc(),                
+
                 // create json docs with no name alterations
                 /*new CraftingStationDoc("CS/objects/crafting-station-list.json"),
                 new StatusEffectDoc("CS/status-effect/status-effect-list.json"),
