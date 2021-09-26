@@ -72,7 +72,7 @@ namespace ValheimJsonExporter.Docs
                     jsonPiece.Add("var_name", piece.m_name);
                     jsonPiece.Add("true_name", obj.name);
                     jsonPiece.Add("prefab_name", obj.name);
-                    jsonPiece.Add("description", piece.m_description);
+                    jsonPiece.Add("description", ValheimJsonExporter.Localize(piece.m_description));
                     jsonPiece.Add("piece_table_true_name", pair.Key);
                     // public bool m_enabled = true;
                     jsonPiece.Add("enabled", piece.m_enabled);
